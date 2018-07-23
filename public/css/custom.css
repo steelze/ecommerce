@@ -1,0 +1,6 @@
+/* your styles go here */
+.block-body input, .block-body textarea {
+    border: none;
+    border-bottom: 2px solid #ddd;
+    border-radius: 0;
+}
