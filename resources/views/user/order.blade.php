@@ -23,7 +23,7 @@
         </div>
     </section>
     <section class="padding-small">
-        <div class="container">
+        <div class="container-fluid">
         <div class="row">
             <div class="col-lg-8 col-xl-9 pl-lg-3 offset-lg-2">
             <table class="table table-hover table-responsive-md">
@@ -40,10 +40,10 @@
                     @foreach($orders as $order)
                         <tr>
                             <th>#{{ $order->order_id }}</th>
-                            <td>{{ $order->created_at->format('d M Y') }}</td>
+                            <th>{{ $order->created_at->format('d M Y h:i:s A') }}</th>
                             <td>{{ number_format($order->cart['totalPrice'], 2, '.', ',') }}</td>
                             <td><span class="badge badge-info">Being prepared</span></td>
-                            {{-- <td><a href="{{}}" class="btn btn-primary btn-sm">View</a></td> --}}
+                            <td><a href="{{ route('view.single.order', ['id' => $order->id, 'email' => Auth::user()->email, 'logged_in' => 'true']) }}" class="btn btn-primary btn-sm">View</a></td>
                         </tr>
                     @endforeach
                 </tbody>

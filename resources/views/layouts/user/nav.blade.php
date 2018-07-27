@@ -65,7 +65,7 @@
                         'email' => Auth::user()->email,
                         'logged_in' => 'true',  
                         'name' => Auth::user()->name]) }}" class="nav-link">Profile</a>
-                    <li class="nav-item"><a href="#" class="nav-link">My Orders</a>
+                    <li class="nav-item"><a href="{{ route('view.order', ['email' => Auth::user()->email, 'logged_in' => 'true']) }}" class="nav-link">My Orders</a>
                     <li class="nav-item">
                         <a href="{{ route('logout') }}"
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav-link logout">

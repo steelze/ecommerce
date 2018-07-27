@@ -55,8 +55,7 @@ Route::group(['namespace' => 'User'], function()
     Route::get('/{category}/{id}/{slug}', 'ProductController@showProduct')->name('view.product')->where('id', '[0-9]+');
     // ORDER
     Route::get('/orders', 'OrderController@viewOrders')->name('view.order');  
-    // Route::put('/user/profile', 'UserController@updateProfile')->name('update.user.profile'); 
-    // Route::post('/user/profile', 'UserController@changePassword')->name('change.user.password');
+    Route::get('/orders/{id}', 'OrderController@viewSingleOrder')->name('view.single.order');  
     // CHECKOUT
     Route::get('/shop/checkout', 'CheckoutController@view')->name('user.checkout'); 
     Route::post('/shop/checkout', 'CheckoutController@address')->name('user.checkout.address');

@@ -15,18 +15,7 @@ class ComposerServiceProvider extends ServiceProvider
     {
         view()->composer(
             [
-                'welcome',
-                'user.shop',
-                'user.cart',
-                'user.order',
-                'auth.login',
-                'user.profile',
-                'user.payment',
-                'user.product',
-                'user.checkout',
-                'user.transaction',
-                'auth.register',
-                'auth.admin.login'
+                'master.user'
             ],
             'App\Http\ViewComposers\CategoryComposer'
         );

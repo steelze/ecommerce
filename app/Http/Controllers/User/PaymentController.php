@@ -29,18 +29,21 @@ class PaymentController extends Controller
     {
         $paymentDetails = Paystack::getPaymentData();
         $request = session('request-address');
-
         if ($paymentDetails['data']['status']) {
 
             $cart = $this->getCart();
             
             $orderId = $this->getOrderId();
 
-            $orderCart = serialize($cart);
+            $orderCart = [
+                'item' => $cart->items, 
+                'totalQty' => $cart->totalQty, 
+                'totalPrice' => $cart->totalPrice, 
+            ];
 
             $data = [
                 'user_id' => Auth::user()->id,
-                'cart' => $orderCart,
+                'cart' => json_encode($orderCart),
                 'order_id' => $orderId,
                 'shipping_details' => $this->getShippingDetails($request),
                 'method' => 'Online Transaction',
@@ -60,7 +63,6 @@ class PaymentController extends Controller
                 'name' => Auth::user()->name
             ]);
         }
-        dd($paymentDetails);
     }
 
     protected function getCart()

@@ -26,12 +26,21 @@ class OrderController extends Controller
 
     public function viewOrders()
     {
-        $orders = Order::where('user_id', Auth::user()->id)->get();
+        $orders = Order::where('user_id', Auth::user()->id)->orderBy('id', 'DESC')->get();
         foreach ($orders as $key) {
-            // var_dump($key->cart);
             $key->cart = json_decode($key->cart, true);
         }
-        // var_dump($orders);
         return view('user.order', compact('orders'));
+    }
+
+    public function viewSingleOrder(Order $id)
+    {
+        $order = $id;
+        $order->cart = json_decode($order->cart, true);
+        $order->shipping_details = json_decode($order->shipping_details, true);
+        // foreach ($order->cart['item'] as $key) {
+        //    echo json_decode($key['item']['images'], true)[0];
+        // }
+        return view('user.single-order', compact('order'));
     }
 }
